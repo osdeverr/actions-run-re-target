@@ -34,5 +34,5 @@ runs:
       with:
         arch: ${{ inputs.arch }}
 
-    - run: ${{ inputs.re-executable }} run --arch ${{ inputs.arch }} --configuration ${{ inputs.configuration }} --path ${{ inputs.path }} ${{ inputs.target }} ${{ inputs.cmdline }}
+    - run: ${{ inputs.re-executable }} run --no-run-choice true --arch ${{ inputs.arch }} --configuration ${{ inputs.configuration }} --path ${{ inputs.path }} ${{ inputs.target }} ${{ inputs.cmdline }}
       shell: bash
