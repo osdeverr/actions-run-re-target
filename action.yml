@@ -29,10 +29,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - uses: seanmiddleditch/gha-setup-ninja@master
+    
     # Sets up the MSVC dev command prompt in case we're running Windows
     - uses: ilammy/msvc-dev-cmd@v1
       with:
         arch: ${{ inputs.arch }}
 
-    - run: ${{ inputs.re-executable }} run --no-run-choice true --arch ${{ inputs.arch }} --configuration ${{ inputs.configuration }} --path ${{ inputs.path }} ${{ inputs.target }} ${{ inputs.cmdline }}
+    - run: ${{ inputs.re-executable }} run --msg-level problems --no-run-choice true --arch ${{ inputs.arch }} --configuration ${{ inputs.configuration }} --path ${{ inputs.path }} ${{ inputs.target }} ${{ inputs.cmdline }}
       shell: bash
