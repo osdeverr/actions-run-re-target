@@ -1,0 +1,38 @@
+name: Run Re Target
+description: Runs a Re build system target
+
+inputs:
+  path:
+    description: The path to the project
+    default: .
+
+  target:
+    description: The target to run (if empty, runs the default target or errors out)
+    default: ''
+
+  cmdline:
+    description: The run command line
+    default: ''
+
+  arch:
+    description: Build architecture
+    default: x64
+    
+  configuration:
+    description: Build configuration
+    default: release
+
+  re-executable:
+    description: The Re executable to use
+    default: re
+
+runs:
+  using: 'composite'
+  steps:
+    # Sets up the MSVC dev command prompt in case we're running Windows
+    - uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: ${{ inputs.arch }}
+
+    - run: ${{ inputs.re-executable }} run --arch ${{ inputs.arch }} --configuration ${{ inputs.configuration }} --path ${{ inputs.path }} ${{ inputs.target }} ${{ inputs.cmdline }}
+      shell: bash
