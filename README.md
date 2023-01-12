@@ -20,7 +20,7 @@ jobs:
     # The action will fail if your executable fails
     # to build or returns a non-zero exit code.
     - name: Run unit tests
-      uses: osdeverr/actions-build-re-target@v2
+      uses: osdeverr/actions-run-re-target@v2
 
       # All of the following parameters are optional
       with:
